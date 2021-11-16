@@ -1,9 +1,11 @@
 package com.dicoding.picodiploma.appgithubuserlist
 
-
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.support.v4.content.ContextCompat
+
 import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -16,7 +18,6 @@ import android.widget.TextView
 
 class AdapterUser(private val users: MutableList<GitHubUser>) : RecyclerView.Adapter<AdapterUser.ViewHolder>() {
     private lateinit var cont : Context
-    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_user,parent,false)
         return ViewHolder(view)
@@ -29,32 +30,32 @@ class AdapterUser(private val users: MutableList<GitHubUser>) : RecyclerView.Ada
         holder.namalengkap.text = users[position].nama
         holder.email.text = users[position].email
 
-            when (position) {
-                0 -> holder.image.setImageResource(R.drawable.avatar1)
-                1 -> holder.image.setImageResource(R.drawable.avatar2)
-                2 -> holder.image.setImageResource(R.drawable.avatar3)
-                3 -> holder.image.setImageResource(R.drawable.avatar1)
-                4 -> holder.image.setImageResource(R.drawable.avatar2)
-                5 -> holder.image.setImageResource(R.drawable.avatar3)
-                6 -> holder.image.setImageResource(R.drawable.avatar1)
-                7 -> holder.image.setImageResource(R.drawable.avatar2)
-                8 -> holder.image.setImageResource(R.drawable.avatar3)
-                9 -> holder.image.setImageResource(R.drawable.avatar1)
-                10 -> holder.image.setImageResource(R.drawable.avatar2)
-                11 -> holder.image.setImageResource(R.drawable.avatar3)
-                else -> holder.image.setImageResource(R.drawable.avatar1)
+        when (position) {
+            0 -> holder.image.setImageResource(R.drawable.avatar1)
+            1 -> holder.image.setImageResource(R.drawable.avatar2)
+            2 -> holder.image.setImageResource(R.drawable.avatar3)
+            3 -> holder.image.setImageResource(R.drawable.avatar1)
+            4 -> holder.image.setImageResource(R.drawable.avatar2)
+            5 -> holder.image.setImageResource(R.drawable.avatar3)
+            6 -> holder.image.setImageResource(R.drawable.avatar1)
+            7 -> holder.image.setImageResource(R.drawable.avatar2)
+            8 -> holder.image.setImageResource(R.drawable.avatar3)
+            9 -> holder.image.setImageResource(R.drawable.avatar1)
+            10 -> holder.image.setImageResource(R.drawable.avatar2)
+            11 -> holder.image.setImageResource(R.drawable.avatar3)
+            else -> holder.image.setImageResource(R.drawable.avatar1)
+         }
 
-        }
+
         val paramUsername : String = users[holder.adapterPosition].username.toString()
         val paramNama : String = users[holder.adapterPosition].nama.toString()
         val paramEmail : String = users[holder.adapterPosition].email.toString()
-        val paramAvatar : String = "avatar" + position
-        val paramFollower : String = users[holder.adapterPosition].follower.toString()
-        val paramFollowing : String = users[holder.adapterPosition].following.toString()
+        val paramAvatar : Int = position
+        val paramFollower : String = "Followers : " + users[holder.adapterPosition].follower.toString()
+        val paramFollowing : String = "Followings : " + users[holder.adapterPosition].following.toString()
         val paramCompany : String = users[holder.adapterPosition].company.toString()
         val paramLocation : String = users[holder.adapterPosition].location.toString()
         val paramRepository : String = users[holder.adapterPosition].repository.toString()
-        /* baru sampai sini setelah ini ditambahkan syntax untuk buka detail_user view dengan parameter diatas */
 
         holder.itemView.setOnClickListener() {
             val it2 = Intent(it.context, MoveDataWithActivity::class.java).apply {
@@ -65,15 +66,23 @@ class AdapterUser(private val users: MutableList<GitHubUser>) : RecyclerView.Ada
                 putExtra("EXTRA_FOLLOWING", paramFollowing.toString())
                 putExtra("EXTRA_FOLLOWER", paramFollower.toString())
                 putExtra("EXTRA_LOCATION", paramLocation.toString())
-              }
-            if(it2.hasExtra("EXTRA_USERNAME")) {
-                 startActivity(it.context,it2,it2.extras)
-                Log.d(TAG, "Username:" + it2.getStringExtra("EXTRA_USERNAME"))
-                Log.d(TAG, "Has Extra ?" + it2.extras)
-            }else{
-                Log.d(TAG,"No Activity")
+                putExtra("EXTRA_AVATAR",paramAvatar).toString()
+
+            //Log.d(TAG, "Klik dari Item View " + paramUsername.toString())
+                //Log.d(TAG, "Has Extra ?" + extras)
+
+
+
             }
 
+                if(it2.hasExtra("EXTRA_USERNAME")==true) {
+                 //startActivity(holder.itemView.context,it2,it2.extras)
+                    Log.d(TAG, "Has Extra ?" + it2.extras)
+                    val context = holder.itemView.context
+                    context.startActivity(it2)
+                }else{
+                    Log.d(TAG, "Has Extra ? No, I think Not")
+                }
         }
 
     }
