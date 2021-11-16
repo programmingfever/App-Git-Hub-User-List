@@ -2,6 +2,7 @@ package com.dicoding.picodiploma.appgithubuserlist
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 
 
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_LOCATION = "extra_location"
         const val EXTRA_FOLLOWING = "extra_following"
         const val EXTRA_FOLLOWER = "extra_follower"
+        val EXTRA_IMAGE_RESOURCES : Resources? = null
         fun CalltoOpen(mainActivity: MainActivity){
             val intent = Intent(mainActivity,MoveDataWithActivity::class.java).apply{
                 val tVdetUsername: TextView = mainActivity.findViewById(R.id.usernameDet_txt)
@@ -36,24 +39,9 @@ class MainActivity : AppCompatActivity() {
                 val tVdetFollower: TextView = mainActivity.findViewById(R.id.followerDet_txt)
                 val tVdetCompany: TextView = mainActivity.findViewById(R.id.CompanyDet_txt)
                 val tVdetLocation: TextView = mainActivity.findViewById(R.id.locationDet_txt)
-    
-    
-                val namalengkap = mainActivity.intent.getStringExtra(EXTRA_NAMALENGKAP)
-                val username = mainActivity.intent.getStringExtra(EXTRA_USERNAME)
-                val email = mainActivity.intent.getStringExtra(EXTRA_EMAIL)
-                val repository = mainActivity.intent.getStringExtra(EXTRA_REPOSITORY)
-                val company = mainActivity.intent.getStringExtra(EXTRA_COMPANY)
-                val location = mainActivity.intent.getStringExtra(EXTRA_LOCATION)
-                val following = mainActivity.intent.getStringExtra(EXTRA_FOLLOWING)
-                val follower = mainActivity.intent.getStringExtra(EXTRA_FOLLOWER)
-                tVdetUsername.text = username
-                tVdetNamaLengkap.text = namalengkap
-                tVdetCompany.text = company
-                tVdetEmail.text = email
-                tVdetFollower.text = follower
-                tVdetFollowing.text = following
-                tVdetLocation.text = location
-    
+                val IvAvatar : ImageView = mainActivity.findViewById(R.id.avatarDet_img)
+
+
             }
             mainActivity.startActivity(intent)
         }
@@ -203,7 +191,7 @@ class MainActivity : AppCompatActivity() {
             adapter = AdapterUser(users)
 
         }
-        
+
     }
 
 }
