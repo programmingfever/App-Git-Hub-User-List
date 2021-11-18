@@ -19,172 +19,148 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mUser: RecyclerView
     private lateinit var myData : GitHubUser
-    companion object {
-        const val EXTRA_AVATAR = "extra_avatar"
-        const val EXTRA_USERNAME = "username"
-        const val EXTRA_NAMALENGKAP = "extra_namalengkap"
-        const val EXTRA_REPOSITORY = "extra_repository"
-        const val EXTRA_EMAIL = "extra_email"
-        const val EXTRA_COMPANY = "extra_company"
-        const val EXTRA_LOCATION = "extra_location"
-        const val EXTRA_FOLLOWING = "extra_following"
-        const val EXTRA_FOLLOWER = "extra_follower"
-        val EXTRA_IMAGE_RESOURCES : Resources? = null
-        fun CalltoOpen(mainActivity: MainActivity){
-            val intent = Intent(mainActivity,MoveDataWithActivity::class.java).apply{
-                val tVdetUsername: TextView = mainActivity.findViewById(R.id.usernameDet_txt)
-                val tVdetNamaLengkap: TextView = mainActivity.findViewById(R.id.namaDet_txt)
-                val tVdetEmail: TextView = mainActivity.findViewById(R.id.emailDet_txt)
-                val tVdetFollowing: TextView = mainActivity.findViewById(R.id.followingDet_txt)
-                val tVdetFollower: TextView = mainActivity.findViewById(R.id.followerDet_txt)
-                val tVdetCompany: TextView = mainActivity.findViewById(R.id.CompanyDet_txt)
-                val tVdetLocation: TextView = mainActivity.findViewById(R.id.locationDet_txt)
-                val IvAvatar : ImageView = mainActivity.findViewById(R.id.avatarDet_img)
-    
 
-            }
-            mainActivity.startActivity(intent)
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val users = mutableListOf<GitHubUser>()
-        users.add(
-            GitHubUser(
-                username = "ProgrammingFever",
-                nama = "Abdul Rozak",
-                email = "rozak.programming@gmail.com",
-                avatar = "@drawable/avatar1",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Angin Ribut",
-                location = "Jakarta",
-                repository = "programmingfever"
+        /*
+        val arrListUsername = resources.getStringArray(R.array.username).toList()
+        val arrListName = resources.getStringArray(R.array.name).toList()
+        val arrListLocation = resources.getStringArray(R.array.name).toList()
+        val arrListRepository = resources.getStringArray(R.array.repository).toList()
+        val arrListCompany = resources.getStringArray(R.array.company).toList()
+        val arrListFollowing = resources.getStringArray(R.array.following).toList()
+        val arrListFollowers = resources.getStringArray(R.array.followers).toList()
+        val arrListAvatar = resources.getStringArray(R.array.followers).toList()
+        */
+        Log.d("Tag","Test List Username:"+resources.getStringArray(R.array.username).get(0))
+        if(resources.getStringArray(R.array.username).get(0)!==null) {
+            Log.d("Tag","Test List Username:"+resources.getStringArray(R.array.username).get(0))
+            users.add(
+                GitHubUser(
+                    username = "JakeWharton",
+                    name = "Jake Wharton",
+                    location = "Pittsburgh, PA, USA",
+                    repository = "102",
+                    company = "Google, Inc.",
+                    following = "56995",
+                    followers = "12",
+                    avatar = "@drawable/user1"
+                )
             )
-        )
-        users.add(
-            GitHubUser(
-                username = "JhonDoe",
-                nama = "Jhon Doe",
-                email = "jhondoe@gmail.com",
-                avatar = "@drawable/avatar2",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Maju Tak Gentar",
-                location = "Jakarta",
-                repository = "jhondoe"
-            )
-        )
-        users.add(
-            GitHubUser(
-                username = "JhonLenonn",
-                nama = "Jhon Lennon",
-                email = "jhon_lenonn@gmail.com",
-                avatar = "@drawable/avatar3",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Apa Saja",
-                location = "Surabaya",
-                repository = "jhonlennon"
-            )
-        )
-        users.add(
-            GitHubUser(
-                username = "Jhony",
-                nama = "Jhony",
-                email = "jhony@gmail.com",
-                avatar = "@drawable/avatar1",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Keren Dong",
-                location = "Semarang",
-                repository = "jhony"
-            )
-        )
 
-        users.add(
-            GitHubUser(
-                username = "Agus",
-                nama = "Agus",
-                email = "agoes@gmail.com",
-                avatar = "@drawable/avatar2",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Cerminan",
-                location = "Bandung",
-                repository = "agoess"
+            users.add(
+                GitHubUser(
+                    username = "amitshekhariitbhu",
+                    name = "Amit Shekhar",
+                    location = "New Delhi, India",
+                    repository = "37",
+                    company = "MindOrksOpenSource",
+                    following = "12",
+                    followers = "5153",
+                    avatar = "@drawable/user2"
+                )
             )
-        )
-        users.add(
-            GitHubUser(
-                username = "Rendi",
-                nama = "Rendi",
-                email = "rendi_1@gmail.com",
-                avatar = "@drawable/avatar3",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Yang Penting",
-                location = "Solo",
-                repository = "rendi"
+            users.add(
+                GitHubUser(
+                    username = "romainguy",
+                    name = "Romain Guy",
+                    location = "California",
+                    repository = "9",
+                    company = "Google",
+                    following = "0",
+                    followers = "7972",
+                    avatar = "@drawable/user3"
+                )
             )
-        )
-        users.add(
-            GitHubUser(
-                username = "Ibrahim",
-                nama = "Ibrahim",
-                email = "aim_98@gmail.com",
-                avatar = "@drawable/avatar1",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Sejahtera",
-                location = "Jakarta",
-                repository = "aim"
-            )
-        )
 
-        users.add(
-            GitHubUser(
-                username = "Lenni",
-                nama = "Lenni",
-                email = "lenni_0@gmail.com",
-                avatar = "@drawable/avatar2",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Mahakarya",
-                location = "Solo",
-                repository = "lenni"
+            users.add(
+                GitHubUser(
+                    username = "chrisbanes",
+                    name = "Chris Banes",
+                    location = "Sydney, Australia",
+                    repository = "30",
+                    company = "Google working on @android",
+                    following = "1",
+                    followers = "14725",
+                    avatar = "@drawable/user4"
+                )
             )
-        )
-        users.add(
-            GitHubUser(
-                username = "Rizal",
-                nama = "Rizal",
-                email = "rizal_ok@gmail.com",
-                avatar = "@drawable/avatar3",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Sentosa",
-                location = "Jakarta",
-                repository = "rizal"
+            users.add(
+                GitHubUser(
+                    username = "tipsy",
+                    name = "David",
+                    location = "Trondheim, Norway",
+                    repository = "56",
+                    company = "Working Group Two",
+                    following = "0",
+                    followers = "788",
+                    avatar = "@drawable/user5"
+                )
             )
-        )
-        users.add(
-            GitHubUser(
-                username = "Rahmat",
-                nama = "Rahmat",
-                email = "rahmat_s@gmail.com",
-                avatar = "@drawable/avatar1",
-                follower = "Jhon Doe, Jhon Lennon, Lenni",
-                following = "Jhon Doe, Jhon Lennon, Lenni, Agus, Rendi, Ibrahim",
-                company = "PT. Indah",
-                location = "Jakarta",
-                repository = "rahmat"
+            users.add(
+                GitHubUser(
+                    username = "ravi8x",
+                    name = "Ravi Tamada",
+                    location = "India",
+                    repository = "28",
+                    company = "AndroidHive | Droid5",
+                    following = "3",
+                    followers = "18628",
+                    avatar = "@drawable/user6"
+                )
             )
-        )
-
+            users.add(
+                GitHubUser(
+                    username = "jasoet",
+                    name = "Deny Prasetyo",
+                    location = "Kotagede, Yogyakarta, Indonesia",
+                    repository = "44",
+                    company = "gojek-engineering",
+                    following = "39",
+                    followers = "277",
+                    avatar = "@drawable/user7"
+                )
+            )
+            users.add(
+                GitHubUser(
+                    username = "budioktaviyan",
+                    name = "Budi Oktaviyan",
+                    location = "Jakarta, Indonesia",
+                    repository = "110",
+                    company = "KotlinID",
+                    following = "23",
+                    followers = "178",
+                    avatar = "@drawable/user8"
+                )
+            )
+            users.add(
+                GitHubUser(
+                    username = "hendisantika",
+                    name = "Hendi Santika",
+                    location = "Bojongsoang - Bandung Jawa Barat",
+                    repository = "1064",
+                    company = "JVMDeveloperID @KotlinID @IDDevOps",
+                    following = "61",
+                    followers = "428",
+                    avatar = "@drawable/user9"
+                )
+            )
+            users.add(
+                GitHubUser(
+                    username = "sidiqpermana",
+                    name = "Sidiq Permana",
+                    location = "Jakarta Indonesia",
+                    repository = "65",
+                    company = "Nusantara Beta Studio",
+                    following = "10",
+                    followers = "465",
+                    avatar = "@drawable/user10"
+                )
+            )
+        }
         mUser = findViewById(R.id.recView)
         mUser.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)

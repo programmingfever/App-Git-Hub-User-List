@@ -5,16 +5,16 @@ import android.os.Parcelable
 
 data class GitHubUser (
     val username : String?,
-    val nama : String?,
-    val email : String?,
-    val avatar : String?,
-    val follower : String?,
-    val following : String?,
-    val company : String?,
+    val name : String?,
     val location : String?,
-    val repository : String?
+    val repository : String?,
+    val company : String?,
+    val following : String?,
+    val followers : String?,
+    val avatar : String?
 
-) : Parcelable {
+
+    ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -24,20 +24,18 @@ data class GitHubUser (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(username)
-        parcel.writeString(nama)
-        parcel.writeString(email)
-        parcel.writeString(avatar)
-        parcel.writeString(follower)
-        parcel.writeString(following)
-        parcel.writeString(company)
+        parcel.writeString(name)
         parcel.writeString(location)
         parcel.writeString(repository)
+        parcel.writeString(company)
+        parcel.writeString(following)
+        parcel.writeString(followers)
+        parcel.writeString(avatar)
     }
 
     override fun describeContents(): Int {
